@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Accueil">
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-primary)] via-[#0d0d1a] to-[var(--color-bg-primary)]"></div>
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--color-crimson)] rounded-full filter blur-[128px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--color-cyan)] rounded-full filter blur-[128px]"></div>
+    </div>
+    
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+      <div class="mb-6">
+        <span class="inline-block font-[var(--font-heading)] text-xs tracking-[0.3em] uppercase text-[var(--color-crimson)] border border-[var(--color-crimson)]/30 px-4 py-1.5 rounded-full bg-[var(--color-crimson-glow)]">
+          Bureau d'Isolement Exoculturel
+        </span>
+      </div>
+      
+      <h1 class="font-[var(--font-heading)] text-5xl sm:text-7xl font-black tracking-wider uppercase mb-6">
+        <span class="text-white">Directive</span>
+        <br />
+        <span class="text-[var(--color-crimson)]">Zéro</span>
+      </h1>
+      
+      <p class="max-w-2xl mx-auto text-lg sm:text-xl text-[var(--color-text-secondary)] mb-4 leading-relaxed">
+        JDR de science-fiction sombre. Infiltration. Effacement. Surveillance de civilisations.
+      </p>
+      <p class="max-w-xl mx-auto text-sm text-[var(--color-text-muted)] font-[var(--font-mono)] mb-10">
+        « Aucune civilisation ne doit subir d'altération de sa trajectoire naturelle par contact avec une technologie qu'elle n'a pas développée elle-même. »
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`${base}/regles`} class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-crimson)] text-white font-[var(--font-heading)] text-sm tracking-wider uppercase rounded hover:bg-[var(--color-crimson-dark)] transition-colors">
+          Lire les Règles →
+        </a>
+        <a href={`${base}/univers`} class="inline-flex items-center gap-2 px-6 py-3 border border-[var(--color-cyan)]/40 text-[var(--color-cyan)] font-[var(--font-heading)] text-sm tracking-wider uppercase rounded hover:bg-[var(--color-cyan-glow)] transition-colors">
+          Explorer l'Univers
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-[var(--font-heading)] text-2xl text-[var(--color-cyan)] tracking-wider uppercase mb-4">Le Concept</h2>
+      <div class="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-[var(--color-crimson)] to-transparent"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 text-[var(--color-text-secondary)]">
+      <div>
+        <p class="mb-4">
+          Dans <strong class="text-white">Directive Zéro</strong>, tu incarnes un agent du 
+          <strong class="text-[var(--color-crimson)]">Bureau d'Isolement Exoculturel</strong> — une organisation 
+          secrète chargée de protéger les civilisations en développement de toute contamination extérieure.
+        </p>
+        <p>
+          Tu opères sous couverture sur des mondes habités. Tu surveilles, tu effaces les traces, 
+          tu manipules les récits. Et quand la Directive Zéro est violée, tu interviens — par la ruse, 
+          la force, ou l'oubli.
+        </p>
+      </div>
+      <div>
+        <p class="mb-4">
+          Le jeu utilise un système <strong class="text-white">d100</strong> avec des mécaniques de 
+          <strong class="text-[var(--color-cyan)]">stress</strong>, de <strong class="text-[var(--color-cyan)]">couverture</strong>, 
+          et d'<strong class="text-[var(--color-cyan)]">infiltration</strong>. Le combat est dangereux. 
+          La panique est réelle. Chaque mission est une course contre la détection.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVIGATION CARDS -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-[var(--font-heading)] text-2xl text-[var(--color-cyan)] tracking-wider uppercase mb-4">Sections</h2>
+      <div class="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-[var(--color-crimson)] to-transparent"></div>
+    </div>
+    
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card: Univers -->
+      <a href={`${base}/univers`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">12 livres</div>
+          <h3 class="card-title">Univers</h3>
+          <p class="card-desc">Le Bureau, les Sphères, les Reliques, les incidents classifiés. Plonge dans le lore de Directive Zéro.</p>
+        </div>
+      </a>
+
+      <!-- Card: Règles -->
+      <a href={`${base}/regles`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">11 chapitres</div>
+          <h3 class="card-title">Règles</h3>
+          <p class="card-desc">Du d100 au combat en passant par le stress, l'infiltration, les poursuites et la cybernétique.</p>
+        </div>
+      </a>
+
+      <!-- Card: Archétypes -->
+      <a href={`${base}/archetypes`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">6 profils</div>
+          <h3 class="card-title">Archétypes d'Agents</h3>
+          <p class="card-desc">Censeur, Effaceur, Synthète, Ancriste, Porteur, Limier — trouve ton rôle au sein du Bureau.</p>
+        </div>
+      </a>
+
+      <!-- Card: Création -->
+      <a href={`${base}/creation`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">guide rapide</div>
+          <h3 class="card-title">Création de Personnage</h3>
+          <p class="card-desc">Crée ton agent en quelques minutes : attributs, résistances, compétences, traits et fonction.</p>
+        </div>
+      </a>
+
+      <!-- Card: Fiche -->
+      <a href={`${base}/fiche`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">interactif</div>
+          <h3 class="card-title">Fiche de Personnage</h3>
+          <p class="card-desc">Fiche interactive : allocation d'attributs, calcul automatique, export JSON et mode impression.</p>
+        </div>
+      </a>
+
+      <!-- Card: Matériel -->
+      <a href={`${base}/materiel`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">tableaux</div>
+          <h3 class="card-title">Matériel</h3>
+          <p class="card-desc">Armes, armures, gadgets, véhicules et implants. Tout le catalogue avec Fuite et Tier.</p>
+        </div>
+      </a>
+
+      <!-- Card: Glossaire -->
+      <a href={`${base}/glossaire`} class="card-link group">
+        <div class="card">
+          <div class="card-badge">référence</div>
+          <h3 class="card-title">Glossaire</h3>
+          <p class="card-desc">Tous les termes du setting : Bureau, Sphères, Reliques, Voix, technologies doctrinales.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .card-link {
+    display: block;
+  }
+  .card {
+    position: relative;
+    padding: 1.5rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: all 0.3s;
+    height: 100%;
+  }
+  .card-link:hover .card {
+    border-color: var(--color-crimson);
+    box-shadow: 0 0 30px var(--color-crimson-glow);
+    transform: translateY(-2px);
+  }
+  .card-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-cyan);
+    border: 1px solid var(--color-cyan-glow);
+    background: var(--color-cyan-glow);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+  .card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+  .card-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+</style>

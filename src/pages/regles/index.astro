@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const chapters = await getCollection('regles');
+const sorted = chapters.sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Règles" description="Les 11 chapitres de règles de Directive Zéro">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-12">
+      <span class="font-[var(--font-heading)] text-xs tracking-[0.2em] uppercase text-[var(--color-crimson)]">Manuel de l'agent</span>
+      <h1 class="font-[var(--font-heading)] text-4xl font-bold text-white tracking-wider uppercase mt-2 mb-4">Règles du Jeu</h1>
+      <p class="text-[var(--color-text-secondary)] max-w-2xl">
+        Les 11 chapitres couvrent tout ce dont tu as besoin pour jouer : du lancer de dés à la cybernétique, 
+        en passant par le combat, l'infiltration et les poursuites.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      {sorted.map((chapter) => (
+        <a href={`${base}/regles/${chapter.id}`} class="block group">
+          <div class="flex items-start gap-4 p-4 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-lg hover:border-[var(--color-crimson)] hover:shadow-lg hover:shadow-[var(--color-crimson-glow)] transition-all">
+            <span class="shrink-0 w-10 h-10 flex items-center justify-center font-[var(--font-heading)] text-sm font-bold text-[var(--color-crimson)] border border-[var(--color-crimson)]/30 rounded bg-[var(--color-crimson-glow)]">
+              {String(chapter.data.order).padStart(2, '0')}
+            </span>
+            <div>
+              <h2 class="font-[var(--font-heading)] text-sm tracking-wider uppercase text-white group-hover:text-[var(--color-crimson)] transition-colors">
+                {chapter.data.title}
+              </h2>
+              {chapter.data.description && (
+                <p class="text-sm text-[var(--color-text-secondary)] mt-1">{chapter.data.description}</p>
+              )}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

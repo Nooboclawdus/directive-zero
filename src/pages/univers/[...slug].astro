@@ -1,0 +1,41 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const books = await getCollection('univers');
+  return books.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allBooks = await getCollection('univers');
+const sorted = allBooks.sort((a, b) => a.data.order - b.data.order);
+
+const currentIndex = sorted.findIndex((b) => b.id === entry.id);
+const prevBook = currentIndex > 0 ? sorted[currentIndex - 1] : null;
+const nextBook = currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
+
+const sidebarItems = sorted.map((b) => ({
+  title: b.data.title,
+  href: `${base}/univers/${b.id}`,
+  order: b.data.order,
+}));
+---
+
+<ContentLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  section="univers"
+  prevPage={prevBook ? { title: prevBook.data.title, href: `${base}/univers/${prevBook.id}` } : null}
+  nextPage={nextBook ? { title: nextBook.data.title, href: `${base}/univers/${nextBook.id}` } : null}
+  sidebarItems={sidebarItems}
+  headings={headings}
+>
+  <Content />
+</ContentLayout>

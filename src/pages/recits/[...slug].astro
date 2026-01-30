@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const recits = await getCollection('recits');
+  return recits.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const allRecits = await getCollection('recits');
+const sorted = allRecits.sort((a, b) => a.data.order - b.data.order);
+const currentIndex = sorted.findIndex((r) => r.id === entry.id);
+const prevRecit = currentIndex > 0 ? sorted[currentIndex - 1] : null;
+const nextRecit = currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- SIDEBAR: Table of Contents -->
+      <aside class="hidden lg:block w-56 shrink-0">
+        <div class="sticky top-24">
+          <a href={`${base}/recits`} class="block mb-4 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-crimson)] hover:text-white transition-colors">
+            ← Récits
+          </a>
+          <nav class="space-y-1 max-h-[calc(100vh-8rem)] overflow-y-auto pr-2">
+            <p class="font-[var(--font-heading)] text-[10px] tracking-[0.15em] uppercase text-[var(--color-text-muted)] mb-2">Chapitres</p>
+            {headings.filter(h => h.depth === 2).map((heading) => (
+              <a
+                href={`#${heading.slug}`}
+                class="block text-sm px-3 py-1.5 rounded text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-tertiary)] transition-colors"
+              >
+                {heading.text}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Mobile: collapsible chapters -->
+      <details class="lg:hidden mb-4 border border-[var(--color-border)] rounded-lg bg-[var(--color-bg-secondary)]">
+        <summary class="cursor-pointer px-4 py-3 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] transition-colors select-none flex items-center gap-2">
+          <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          Chapitres
+        </summary>
+        <nav class="px-4 pb-3 space-y-1">
+          <a href={`${base}/recits`} class="block mb-2 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-crimson)] hover:text-white transition-colors">
+            ← Tous les récits
+          </a>
+          {headings.filter(h => h.depth === 2).map((heading) => (
+            <a
+              href={`#${heading.slug}`}
+              class="block text-sm px-3 py-1.5 rounded text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-tertiary)] transition-colors"
+            >
+              {heading.text}
+            </a>
+          ))}
+        </nav>
+      </details>
+
+      <!-- MAIN CONTENT -->
+      <article class="flex-1 min-w-0">
+        <!-- Header -->
+        <header class="mb-10 pb-8 border-b border-[var(--color-border)]">
+          <div class="flex items-center gap-3 mb-4">
+            {entry.data.type && (
+              <span class="font-[var(--font-heading)] text-[10px] tracking-[0.15em] uppercase px-2 py-0.5 rounded border border-[var(--color-crimson)]/30 text-[var(--color-crimson)] bg-[var(--color-crimson-glow)]">
+                {entry.data.type}
+              </span>
+            )}
+            {entry.data.readingTime && (
+              <span class="text-xs text-[var(--color-text-muted)]">
+                {entry.data.readingTime}
+              </span>
+            )}
+          </div>
+          <h1 class="font-[var(--font-heading)] text-3xl sm:text-4xl font-bold text-white tracking-wider uppercase mb-3">
+            {entry.data.title}
+          </h1>
+          {entry.data.description && (
+            <p class="text-[var(--color-text-secondary)] text-base leading-relaxed max-w-2xl italic">
+              {entry.data.description}
+            </p>
+          )}
+        </header>
+
+        <!-- Story content with reading-optimized prose -->
+        <div class="prose prose-reading">
+          <Content />
+        </div>
+
+        <!-- PREV / NEXT NAV -->
+        <nav class="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row gap-4 justify-between">
+          <a href={`${base}/recits`} class="group flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] transition-colors">
+            <span class="text-lg">←</span>
+            <div>
+              <div class="text-xs font-[var(--font-heading)] uppercase tracking-wider text-[var(--color-text-muted)]">Retour</div>
+              <div class="text-sm">Tous les récits</div>
+            </div>
+          </a>
+          {nextRecit && (
+            <a href={`${base}/recits/${nextRecit.id}`} class="group flex items-center gap-2 text-right text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] transition-colors sm:ml-auto">
+              <div>
+                <div class="text-xs font-[var(--font-heading)] uppercase tracking-wider text-[var(--color-text-muted)]">Suivant</div>
+                <div class="text-sm">{nextRecit.data.title}</div>
+              </div>
+              <span class="text-lg">→</span>
+            </a>
+          )}
+        </nav>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Reading-optimized typography for long-form fiction */
+  .prose-reading {
+    max-width: 65ch;
+  }
+  .prose-reading :global(p) {
+    line-height: 1.85;
+    margin-bottom: 1.25em;
+  }
+  .prose-reading :global(h2) {
+    margin-top: 3em;
+    margin-bottom: 1.5em;
+  }
+  .prose-reading :global(hr) {
+    margin: 2.5em 0;
+    border-color: var(--color-border);
+    opacity: 0.5;
+  }
+  .prose-reading :global(blockquote) {
+    border-left-color: var(--color-crimson);
+    font-style: italic;
+    opacity: 0.85;
+  }
+  .prose-reading :global(em) {
+    color: var(--color-text-secondary);
+  }
+</style>

@@ -1,0 +1,305 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const archetypes = [
+  {
+    id: 'censeur',
+    fonction: 'Censeur',
+    titre: 'L\'Œil Immobile',
+    accroche: 'Tu ne supprimes pas. Tu regardes. Et ce que tu vois décide de tout.',
+    concept: 'Observateur de longue durée, analyste de terrain, spécialiste des cultures pré-stellaires. Tu passes des mois — parfois des années — immergé dans une sphère, cartographiant ses récits, ses rituels, ses vulnérabilités. Quand une anomalie apparaît, c\'est toi qui décides si elle justifie une intervention. Ton rapport peut condamner un monde.',
+    style: 'Patience et analyse. Tu es le personnage qui remarque le détail que personne n\'a vu, qui comprend pourquoi un rituel a changé, qui sent l\'empreinte avant qu\'elle ne devienne visible. En mission, tu guides l\'équipe avec de l\'information. Tu poses les bonnes questions. Tu observes avant d\'agir.',
+    attributs: { Physique: 30, Influence: 35, Perception: 55, Technique: 40 },
+    resistances: { Volonté: 40, 'Sang-froid': 35, Endurance: 25, Vigilance: 30 },
+    competences: ['Surveillance (Expert)', 'Forensique (Formé)', 'Anthropologie (Expert)', 'Histoire (Formé)', 'Enquête (Formé)', 'Linguistique (Formé)'],
+    bonus: '+10 Surveillance, +5 Forensique',
+    equipement: ['Lunettes d\'observation longue portée', 'Carnet de terrain chiffré', 'Kit d\'analyse résiduelle', 'Couverture civile solide'],
+    hook: 'Depuis trois ans, tu observes une sphère ISO-3 depuis un poste orbital. Tu connais chaque village, chaque fête, chaque légende locale. Hier, un mot impossible est apparu dans un chant d\'enfant. Un mot qui n\'existe que dans le lexique conciliaire.',
+    couleur: '#16c2d9',
+    icon: '👁',
+  },
+  {
+    id: 'effaceur',
+    fonction: 'Effaceur',
+    titre: 'La Main Qui Oublie',
+    accroche: 'Ton outil n\'est pas toujours une arme. Mais quand c\'est le cas, personne ne s\'en souvient.',
+    concept: 'Agent de terrain, spécialiste de neutralisation directe. Tu interviens quand l\'empreinte dépasse le seuil. Ton travail est physique, brutal parfois, mais toujours chirurgical. Tu ne laisses pas de traces. Le lendemain, personne ne se souvient que tu es passé.',
+    style: 'Action et précision. Tu es le personnage qui entre dans le bâtiment, qui neutralise la menace, qui fait disparaître les preuves. Tu excelles en combat et en infiltration physique. Mais tu n\'es pas un soldat — tu es un fantôme. La meilleure intervention est celle dont personne ne se souvient.',
+    attributs: { Physique: 55, Influence: 25, Perception: 40, Technique: 40 },
+    resistances: { Volonté: 30, 'Sang-froid': 40, Endurance: 35, Vigilance: 25 },
+    competences: ['Infiltration (Expert)', 'Discrétion (Expert)', 'Escrime ou Tir (Formé)', 'Mobilité (Formé)', 'Tactique (Formé)', 'Défense (Formé)'],
+    bonus: '+10 Physique (au choix), +5 combat',
+    equipement: ['Arme discrète (dague, pistolet silencieux)', 'Kit de crochetage', 'Vêtements adaptables', 'Fumigènes à dispersion rapide'],
+    hook: 'Le champion invincible du Duc de Valdris posait problème : les légendes autour de ses exploits commençaient à ressembler à des récits de contact. Tu l\'as neutralisé en trois minutes, sans témoin. Le lendemain, le Duc pleurait un accident de chasse.',
+    couleur: '#e94560',
+    icon: '🗡',
+  },
+  {
+    id: 'synthete',
+    fonction: 'Synthète',
+    titre: 'Le Tisserand de Récits',
+    accroche: 'Tu ne détruis pas les histoires. Tu en construis de meilleures.',
+    concept: 'Spécialiste de la manipulation narrative. Quand une zone est contaminée, tu reconstruis un récit cohérent par-dessus les ruines. Tu parles aux gens, tu comprends leurs croyances, et tu leur offres une version du monde qui les protège de la vérité. Parfois, tu vis toi-même dans cinq versions différentes de la réalité.',
+    style: 'Social et narratif. Tu es le personnage qui parle, qui convainc, qui manipule les perceptions. Tu transformes les témoignages gênants en légendes inoffensives, les preuves en superstitions. En mission, tu gères les contacts, les témoins, les diplomates locaux. Tu es le visage de l\'équipe.',
+    attributs: { Physique: 25, Influence: 55, Perception: 45, Technique: 35 },
+    resistances: { Volonté: 35, 'Sang-froid': 40, Endurance: 25, Vigilance: 30 },
+    competences: ['Persuasion (Expert)', 'Anthropologie (Expert)', 'Mensonge (Formé)', 'Étiquette (Formé)', 'Identité (Formé)', 'Empathie (Formé)'],
+    bonus: '+10 Anthropologie, +10 Persuasion',
+    equipement: ['Garde-robe de couvertures multiples', 'Enregistreur narratif', 'Module de Scellement Narratif (si Voix Fonctionnelle)', 'Documentation locale falsifiée'],
+    hook: 'Après l\'effondrement d\'une TRC sur Pelion-Zeta, cinq versions contradictoires du même événement circulaient. Tu as passé deux semaines sur place. Tu as tissé un mythe cohérent à partir des fragments. Aujourd\'hui, les cinq témoins racontent la même histoire. La tienne.',
+    couleur: '#a855f7',
+    icon: '🕸',
+  },
+  {
+    id: 'ancriste',
+    fonction: 'Ancriste',
+    titre: 'Le Point Fixe',
+    accroche: '« Ce qui est su ne peut plus être effacé. Ce qui est cru peut être transformé. »',
+    concept: 'Gardien de la doctrine et soutien psychologique de l\'équipe. Tu connais les protocoles par cœur, les phrases stabilisatrices, les rituels de cohérence. Quand un agent craque, quand la réalité glisse, quand la mission dérape — c\'est toi qui ramènes tout le monde à la raison. Tu es l\'ancre.',
+    style: 'Support et résilience. Tu es le personnage qui maintient le groupe en état de fonctionner. Tu stabilises les agents en crise, tu rappelles la doctrine quand tout semble perdu, tu fournis les repères quand la réalité se déforme. Mécaniquement, ton Ancrage permet de relancer les jets de Sang-froid de tes alliés.',
+    attributs: { Physique: 30, Influence: 50, Perception: 40, Technique: 40 },
+    resistances: { Volonté: 40, 'Sang-froid': 35, Endurance: 30, Vigilance: 25 },
+    competences: ['Empathie (Expert)', 'Commandement (Formé)', 'Persuasion (Formé)', 'Identité (Formé)', 'Histoire (Formé)', 'Anthropologie (Formé)'],
+    bonus: '+5 Volonté, Ancrage (relance allié 1/scène)',
+    equipement: ['Codex doctrinal personnel', 'Stimulants anti-stress', 'Communicateur sécurisé', 'Médailles de réalignement (focus tactiles)'],
+    hook: 'Tu vois un agent s\'effondrer après avoir découvert le corps d\'un contact. Tu poses la main sur son épaule et tu murmures la phrase. Il reprend son souffle. Il relance son jet. Il continue. C\'est ce que tu fais. Tu empêches les gens de se perdre.',
+    couleur: '#4ade80',
+    icon: '⚓',
+  },
+  {
+    id: 'porteur',
+    fonction: 'Porteur',
+    titre: 'Le Coffre Vivant',
+    accroche: 'On t\'a confié quelque chose. Tu ne sais pas quoi. Tu ne dois pas savoir.',
+    concept: 'Agent de liaison, courrier, transporteur de l\'indicible. Tu portes des artefacts, des codes, des traces mémorielles — souvent sans connaître la nature de ta charge. Le Bureau compte sur toi pour traverser des zones hostiles avec un colis qu\'il ne peut confier à personne d\'autre. Ton ignorance te protège. Parfois.',
+    style: 'Furtivité et résistance mentale. Tu es le personnage discret, celui qui traverse les lignes sans se faire remarquer. Tu excelles à passer inaperçu et à résister aux effets des Reliques et artefacts. En mission, tu es souvent le plan B : celui qui porte l\'objet critique pendant que les autres font diversion.',
+    attributs: { Physique: 45, Influence: 30, Perception: 40, Technique: 45 },
+    resistances: { Volonté: 40, 'Sang-froid': 30, Endurance: 35, Vigilance: 25 },
+    competences: ['Discrétion (Expert)', 'Survie (Formé)', 'Transport sécurisé (Expert)', 'Mobilité (Formé)', 'Contournement (Formé)', 'Effacement (Formé)'],
+    bonus: '+10 Discrétion, +10 Volonté vs Reliques',
+    equipement: ['Conteneur de transport scellé', 'Kit de survie compact', 'Vêtements à poches masquées', 'Brouilleur de signature (portable)'],
+    hook: 'On t\'a confié un conteneur scellé. Tu ne sais pas ce qu\'il contient. Tu sais juste qu\'il doit arriver au Noyau Silencieux de Talos-IX sans être ouvert, scanné, ni pensé. Trois fois pendant le trajet, tu as senti quelque chose bouger à l\'intérieur. Tu n\'as pas regardé.',
+    couleur: '#f0a030',
+    icon: '📦',
+  },
+  {
+    id: 'limier',
+    fonction: 'Limier',
+    titre: 'Le Chasseur d\'Échos',
+    accroche: 'Les traces que tu cherches ne sont pas visibles. Elles sont racontées.',
+    concept: 'Enquêteur spécialisé dans la traque de contaminations résiduelles. Tu fouilles les zones "mortes", les récits orphelins, les mémoires fracturées. Là où les Effaceurs sont passés et ont raté quelque chose, tu arrives. Tu trouves ce qui reste. Et tu finis le travail.',
+    style: 'Investigation et terrain. Tu es le personnage qui cherche, qui reconstitue, qui traque. Tu opères seul ou en binôme dans des zones dangereuses — territoires effacés, sites de disjonction, zones CONTAM. Tu combines compétences physiques et analytiques. Le Limier est le détective du Bureau.',
+    attributs: { Physique: 45, Influence: 30, Perception: 50, Technique: 35 },
+    resistances: { Volonté: 35, 'Sang-froid': 30, Endurance: 25, Vigilance: 40 },
+    competences: ['Enquête (Expert)', 'Infiltration (Expert)', 'Pistage (Formé)', 'Forensique (Formé)', 'Surveillance (Formé)', 'Survie (Formé)'],
+    bonus: '+10 Infiltration, +10 Enquête',
+    equipement: ['Kit forensique de terrain', 'Détecteur de résidus mémétiques', 'Carte des zones effacées (mise à jour)', 'Arme de secours compacte'],
+    hook: 'Sur Marask, un "continent" apparaît et disparaît selon les observateurs. Tu as passé six mois à traquer les témoins, à recouper les récits, à cartographier les zones où la mémoire se déforme. Tu as fini par trouver le point d\'origine : une Relique enfouie sous trois kilomètres de sédiments.',
+    couleur: '#38bdf8',
+    icon: '🔍',
+  },
+];
+---
+
+<BaseLayout title="Archétypes" description="Les 6 archétypes de personnages de Directive Zéro — inspiration et guide pour créer ton agent du Bureau">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- HEADER -->
+    <div class="mb-12 text-center">
+      <span class="inline-block font-[var(--font-heading)] text-xs tracking-[0.25em] uppercase text-[var(--color-crimson)] border border-[var(--color-crimson)]/30 px-4 py-1.5 rounded-full bg-[var(--color-crimson-glow)] mb-4">
+        Registre des Effectifs
+      </span>
+      <h1 class="font-[var(--font-heading)] text-4xl sm:text-5xl font-bold text-white tracking-wider uppercase mb-4">
+        Archétypes d'Agents
+      </h1>
+      <p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg">
+        Six profils opérationnels. Six façons d'appliquer la Directive Zéro. 
+        Choisis celui qui te ressemble — ou celui qui te fait peur.
+      </p>
+      <div class="h-px w-32 mx-auto mt-6 bg-gradient-to-r from-transparent via-[var(--color-crimson)] to-transparent"></div>
+    </div>
+
+    <!-- QUICK NAV -->
+    <nav class="flex flex-wrap justify-center gap-2 mb-12 no-print">
+      {archetypes.map((a) => (
+        <a href={`#${a.id}`} class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-[var(--font-heading)] tracking-wider uppercase rounded border transition-all"
+           style={`color: ${a.couleur}; border-color: ${a.couleur}33; background: ${a.couleur}11;`}>
+          <span>{a.icon}</span>
+          <span>{a.fonction}</span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- ARCHETYPE CARDS -->
+    <div class="space-y-16">
+      {archetypes.map((a, i) => (
+        <article id={a.id} class="archetype-card scroll-mt-24">
+          <!-- Card header -->
+          <div class="flex flex-col sm:flex-row sm:items-end gap-4 mb-6 pb-4" style={`border-bottom: 2px solid ${a.couleur};`}>
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">{a.icon}</span>
+              <div>
+                <div class="font-[var(--font-heading)] text-xs tracking-[0.2em] uppercase" style={`color: ${a.couleur};`}>
+                  {a.fonction}
+                </div>
+                <h2 class="font-[var(--font-heading)] text-2xl sm:text-3xl font-bold text-white tracking-wide">
+                  {a.titre}
+                </h2>
+              </div>
+            </div>
+            <p class="text-sm text-[var(--color-text-secondary)] font-[var(--font-mono)] italic sm:ml-auto sm:text-right max-w-md">
+              {a.accroche}
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-6">
+            <!-- LEFT: Concept & Style -->
+            <div class="lg:col-span-2 space-y-6">
+              <div>
+                <h3 class="section-label" style={`color: ${a.couleur};`}>Concept</h3>
+                <p class="text-[var(--color-text-primary)] leading-relaxed">{a.concept}</p>
+              </div>
+              <div>
+                <h3 class="section-label" style={`color: ${a.couleur};`}>Style de Jeu</h3>
+                <p class="text-[var(--color-text-primary)] leading-relaxed">{a.style}</p>
+              </div>
+              <div class="p-4 rounded-lg bg-[var(--color-bg-secondary)] border border-[var(--color-border)]">
+                <h3 class="section-label" style={`color: ${a.couleur};`}>Hook de Départ</h3>
+                <p class="text-[var(--color-text-secondary)] leading-relaxed font-[var(--font-mono)] text-sm italic">
+                  {a.hook}
+                </p>
+              </div>
+            </div>
+
+            <!-- RIGHT: Stats -->
+            <div class="space-y-4">
+              <!-- Attributs -->
+              <div class="stat-block">
+                <h3 class="stat-title" style={`border-color: ${a.couleur};`}>Attributs suggérés</h3>
+                <div class="space-y-2">
+                  {Object.entries(a.attributs).map(([attr, val]) => (
+                    <div class="flex items-center justify-between text-sm">
+                      <span class="text-[var(--color-text-secondary)]">{attr}</span>
+                      <div class="flex items-center gap-2">
+                        <div class="w-24 h-1.5 rounded-full bg-[var(--color-bg-primary)] overflow-hidden">
+                          <div class="h-full rounded-full" style={`width: ${((val - 20) / 40) * 100}%; background: ${a.couleur};`}></div>
+                        </div>
+                        <span class="font-[var(--font-mono)] font-bold text-white w-6 text-right">{val}</span>
+                      </div>
+                    </div>
+                  ))}
+                  <div class="text-right text-xs text-[var(--color-text-muted)] mt-1">
+                    Total : {Object.values(a.attributs).reduce((s, v) => s + v, 0)} / 160
+                  </div>
+                </div>
+              </div>
+
+              <!-- Résistances -->
+              <div class="stat-block">
+                <h3 class="stat-title" style={`border-color: ${a.couleur};`}>Résistances suggérées</h3>
+                <div class="space-y-2">
+                  {Object.entries(a.resistances).map(([res, val]) => (
+                    <div class="flex items-center justify-between text-sm">
+                      <span class="text-[var(--color-text-secondary)]">{res}</span>
+                      <span class="font-[var(--font-mono)] font-bold text-white">{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Compétences -->
+              <div class="stat-block">
+                <h3 class="stat-title" style={`border-color: ${a.couleur};`}>Compétences clés</h3>
+                <ul class="space-y-1">
+                  {a.competences.map((c) => (
+                    <li class="text-sm text-[var(--color-text-secondary)] flex items-start gap-2">
+                      <span style={`color: ${a.couleur};`}>›</span>
+                      <span>{c}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-3 pt-2 border-t border-[var(--color-border)]">
+                  <div class="text-xs text-[var(--color-text-muted)]">Bonus de fonction</div>
+                  <div class="text-sm font-[var(--font-mono)]" style={`color: ${a.couleur};`}>{a.bonus}</div>
+                </div>
+              </div>
+
+              <!-- Équipement -->
+              <div class="stat-block">
+                <h3 class="stat-title" style={`border-color: ${a.couleur};`}>Équipement typique</h3>
+                <ul class="space-y-1">
+                  {a.equipement.map((e) => (
+                    <li class="text-sm text-[var(--color-text-secondary)] flex items-start gap-2">
+                      <span class="text-[var(--color-text-muted)]">•</span>
+                      <span>{e}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="mt-16 text-center">
+      <div class="h-px w-32 mx-auto mb-8 bg-gradient-to-r from-transparent via-[var(--color-crimson)] to-transparent"></div>
+      <p class="text-[var(--color-text-secondary)] mb-6">
+        Prêt à créer ton agent ? Les archétypes sont des points de départ — pas des prisons.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={`${base}/creation`} class="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-crimson)] text-white font-[var(--font-heading)] text-sm tracking-wider uppercase rounded hover:bg-[var(--color-crimson-dark)] transition-colors">
+          Guide de Création →
+        </a>
+        <a href={`${base}/fiche`} class="inline-flex items-center gap-2 px-6 py-3 border border-[var(--color-cyan)]/40 text-[var(--color-cyan)] font-[var(--font-heading)] text-sm tracking-wider uppercase rounded hover:bg-[var(--color-cyan-glow)] transition-colors">
+          Fiche Interactive
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .section-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-block {
+    padding: 1rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+  }
+
+  .stat-title {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+  }
+
+  .archetype-card {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  @media print {
+    .archetype-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+</style>

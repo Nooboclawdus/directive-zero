@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const books = await getCollection('univers');
+const sorted = books.sort((a, b) => a.data.order - b.data.order);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Univers" description="Les 12 livres de l'univers de Directive Zéro">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="mb-12">
+      <span class="font-[var(--font-heading)] text-xs tracking-[0.2em] uppercase text-[var(--color-crimson)]">Archives du Bureau</span>
+      <h1 class="font-[var(--font-heading)] text-4xl font-bold text-white tracking-wider uppercase mt-2 mb-4">Univers</h1>
+      <p class="text-[var(--color-text-secondary)] max-w-2xl">
+        Les 12 livres des archives du Bureau d'Isolement Exoculturel. 
+        Histoire, doctrine, sphères, reliques, incidents classifiés et bien plus.
+      </p>
+    </div>
+
+    <div class="space-y-3">
+      {sorted.map((book) => (
+        <a href={`${base}/univers/${book.id}`} class="block group">
+          <div class="flex items-start gap-4 p-4 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-lg hover:border-[var(--color-cyan)] hover:shadow-lg hover:shadow-[var(--color-cyan-glow)] transition-all">
+            <span class="shrink-0 w-10 h-10 flex items-center justify-center font-[var(--font-heading)] text-sm font-bold text-[var(--color-cyan)] border border-[var(--color-cyan)]/30 rounded bg-[var(--color-cyan-glow)]">
+              {String(book.data.order).padStart(2, '0')}
+            </span>
+            <div>
+              <h2 class="font-[var(--font-heading)] text-sm tracking-wider uppercase text-white group-hover:text-[var(--color-cyan)] transition-colors">
+                {book.data.title}
+              </h2>
+              {book.data.description && (
+                <p class="text-sm text-[var(--color-text-secondary)] mt-1">{book.data.description}</p>
+              )}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

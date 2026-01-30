@@ -1,0 +1,197 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Directive Zéro — JDR de science-fiction sombre. Agents infiltrés, civilisations sous surveillance, reliques dangereuses." } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} | Directive Zéro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  <!-- Open Graph -->
+  <meta property="og:title" content={`${title} | Directive Zéro`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Directive Zéro" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={`${title} | Directive Zéro`} />
+  <meta name="twitter:description" content={description} />
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg-primary)]/95 backdrop-blur-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href={`${base}/`} class="flex items-center gap-2 group">
+          <span class="text-[var(--color-crimson)] font-[var(--font-heading)] font-bold text-lg tracking-wider group-hover:text-white transition-colors">
+            DZ<span class="text-[var(--color-cyan)]">:</span>
+          </span>
+          <span class="hidden sm:inline text-[var(--color-text-secondary)] text-sm font-[var(--font-heading)] tracking-widest uppercase">
+            Directive Zéro
+          </span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-1">
+          <a href={`${base}/`} class="nav-link">Accueil</a>
+          <a href={`${base}/univers`} class="nav-link">Univers</a>
+          <a href={`${base}/recits`} class="nav-link">Récits</a>
+          <a href={`${base}/regles`} class="nav-link">Règles</a>
+          <a href={`${base}/archetypes`} class="nav-link">Archétypes</a>
+          <a href={`${base}/creation`} class="nav-link">Création</a>
+          <a href={`${base}/fiche`} class="nav-link">Fiche</a>
+          <a href={`${base}/materiel`} class="nav-link">Matériel</a>
+          <a href={`${base}/glossaire`} class="nav-link">Glossaire</a>
+          <a href={`${base}/recherche`} class="nav-link nav-link--search" aria-label="Recherche">
+            <svg class="w-4 h-4 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            Recherche
+          </a>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] transition-colors" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+      <div class="px-4 py-3 space-y-1">
+        <a href={`${base}/`} class="mobile-nav-link">Accueil</a>
+        <a href={`${base}/univers`} class="mobile-nav-link">Univers</a>
+        <a href={`${base}/recits`} class="mobile-nav-link">Récits</a>
+        <a href={`${base}/regles`} class="mobile-nav-link">Règles</a>
+        <a href={`${base}/archetypes`} class="mobile-nav-link">Archétypes</a>
+        <a href={`${base}/creation`} class="mobile-nav-link">Création</a>
+        <a href={`${base}/fiche`} class="mobile-nav-link">Fiche</a>
+        <a href={`${base}/materiel`} class="mobile-nav-link">Matériel</a>
+        <a href={`${base}/glossaire`} class="mobile-nav-link">Glossaire</a>
+        <a href={`${base}/recherche`} class="mobile-nav-link">
+          <svg class="w-4 h-4 inline-block mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Recherche
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 page-transition">
+    <slot />
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)] mt-16 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left">
+          <p class="font-[var(--font-heading)] text-[var(--color-crimson)] text-sm tracking-wider uppercase">
+            Directive Zéro
+          </p>
+          <p class="text-[var(--color-text-muted)] text-xs mt-1">
+            JDR de science-fiction sombre — Bureau d'Isolement Exoculturel
+          </p>
+        </div>
+        <p class="text-[var(--color-text-muted)] text-xs">
+          « Ce qui est su ne peut plus être effacé. Ce qui est cru peut être transformé. »
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .nav-link {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover {
+      color: var(--color-crimson);
+      background: rgba(233, 69, 96, 0.08);
+    }
+    .mobile-nav-link {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      padding: 0.65rem 0.5rem;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .mobile-nav-link:hover {
+      color: var(--color-crimson);
+      background: rgba(233, 69, 96, 0.08);
+    }
+    .nav-link--search {
+      border: 1px solid var(--color-border);
+      background: rgba(22, 194, 217, 0.05);
+    }
+    .nav-link--search:hover {
+      border-color: var(--color-crimson) !important;
+      background: rgba(233, 69, 96, 0.08) !important;
+    }
+  </style>
+
+  <!-- Back to Top button -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] hover:border-[var(--color-crimson)] transition-all opacity-0 pointer-events-none no-print" aria-label="Retour en haut">
+    <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    }
+
+    // Back to top
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          btt.style.opacity = '1';
+          btt.style.pointerEvents = 'auto';
+        } else {
+          btt.style.opacity = '0';
+          btt.style.pointerEvents = 'none';
+        }
+      });
+      btt.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Fiche de Personnage" description="Fiche interactive de création d'agent pour Directive Zéro">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="character-sheet"></div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Character sheet specific styles */
+  .heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .text-crimson { color: var(--color-crimson); }
+  .text-cyan { color: var(--color-cyan); }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-crimson);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--color-crimson-dark); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    background: transparent;
+    color: var(--color-cyan);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: 1px solid var(--color-cyan);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: var(--color-cyan-glow);
+  }
+
+  .sheet-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-cyan);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .field-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field-input:focus {
+    border-color: var(--color-cyan);
+    box-shadow: 0 0 0 2px var(--color-cyan-glow);
+  }
+  .field-input::placeholder {
+    color: var(--color-text-muted);
+  }
+  select.field-input {
+    cursor: pointer;
+  }
+
+  .gauge-box {
+    padding: 1rem;
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+  .gauge-label {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.35rem;
+  }
+  .gauge-value {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .gauge-formula {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  @media print {
+    .no-print { display: none !important; }
+    .sheet-section {
+      break-inside: avoid;
+      border-color: #ccc;
+      background: white;
+    }
+    .field-input {
+      border-color: #ccc;
+      background: white;
+      color: black;
+    }
+    .section-title { color: #333; border-bottom-color: #ccc; }
+    .field-label { color: #666; }
+  }
+</style>
+
+<script>
+  import { createElement } from 'react';
+  import { createRoot } from 'react-dom/client';
+  import CharacterSheet from '../components/CharacterSheet';
+
+  const container = document.getElementById('character-sheet');
+  if (container) {
+    const root = createRoot(container);
+    root.render(createElement(CharacterSheet));
+  }
+</script>

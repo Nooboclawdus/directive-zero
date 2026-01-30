@@ -1,0 +1,122 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  section?: string;
+  prevPage?: { title: string; href: string } | null;
+  nextPage?: { title: string; href: string } | null;
+  sidebarItems?: { title: string; href: string; order: number }[];
+  headings?: Heading[];
+}
+
+const { title, description, section, prevPage, nextPage, sidebarItems = [], headings = [] } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- SIDEBAR (mobile: collapsible, desktop: sticky) -->
+      {sidebarItems.length > 0 && (
+        <>
+          {/* Mobile sidebar */}
+          <details class="lg:hidden mb-4 border border-[var(--color-border)] rounded-lg bg-[var(--color-bg-secondary)]">
+            <summary class="cursor-pointer px-4 py-3 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-text-secondary)] hover:text-[var(--color-crimson)] transition-colors select-none flex items-center gap-2">
+              <svg class="w-4 h-4 sidebar-chevron transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+              {section === 'regles' ? 'Chapitres' : 'Livres'}
+            </summary>
+            <nav class="px-4 pb-3 space-y-1">
+              {section && (
+                <a href={section === 'regles' ? `${base}/regles` : `${base}/univers`} class="block mb-2 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-crimson)] hover:text-white transition-colors">
+                  ← {section === 'regles' ? 'Toutes les règles' : 'Tout l\'univers'}
+                </a>
+              )}
+              {sidebarItems.sort((a, b) => a.order - b.order).map((item) => (
+                <a
+                  href={item.href}
+                  class:list={[
+                    'block text-sm px-3 py-1.5 rounded transition-colors',
+                    Astro.url.pathname === item.href || Astro.url.pathname === item.href + '/'
+                      ? 'text-[var(--color-crimson)] bg-[var(--color-crimson-glow)] font-medium'
+                      : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-tertiary)]'
+                  ]}
+                >
+                  {item.title}
+                </a>
+              ))}
+            </nav>
+          </details>
+
+          {/* Desktop sidebar */}
+          <aside class="hidden lg:block w-64 shrink-0">
+            <div class="sticky top-24">
+              {section && (
+                <a href={section === 'regles' ? `${base}/regles` : `${base}/univers`} class="block mb-4 font-[var(--font-heading)] text-xs tracking-widest uppercase text-[var(--color-crimson)] hover:text-white transition-colors">
+                  ← {section === 'regles' ? 'Règles' : 'Univers'}
+                </a>
+              )}
+              <nav class="space-y-1">
+                {sidebarItems.sort((a, b) => a.order - b.order).map((item) => (
+                  <a
+                    href={item.href}
+                    class:list={[
+                      'block text-sm px-3 py-1.5 rounded transition-colors',
+                      Astro.url.pathname === item.href || Astro.url.pathname === item.href + '/'
+                        ? 'text-[var(--color-crimson)] bg-[var(--color-crimson-glow)] font-medium'
+                        : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-bg-tertiary)]'
+                    ]}
+                  >
+                    {item.title}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        </>
+      )}
+
+      <!-- MAIN CONTENT -->
+      <article class="flex-1 min-w-0">
+        <TableOfContents headings={headings} />
+        <div class="prose">
+          <slot />
+        </div>
+
+        <!-- PREV / NEXT NAV -->
+        {(prevPage || nextPage) && (
+          <nav class="mt-12 pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row gap-4 justify-between">
+            {prevPage ? (
+              <a href={prevPage.href} class="group flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-cyan)] transition-colors">
+                <span class="text-lg">←</span>
+                <div>
+                  <div class="text-xs font-[var(--font-heading)] uppercase tracking-wider text-[var(--color-text-muted)]">Précédent</div>
+                  <div class="text-sm">{prevPage.title}</div>
+                </div>
+              </a>
+            ) : <div />}
+            {nextPage ? (
+              <a href={nextPage.href} class="group flex items-center gap-2 text-right text-[var(--color-text-secondary)] hover:text-[var(--color-cyan)] transition-colors sm:ml-auto">
+                <div>
+                  <div class="text-xs font-[var(--font-heading)] uppercase tracking-wider text-[var(--color-text-muted)]">Suivant</div>
+                  <div class="text-sm">{nextPage.title}</div>
+                </div>
+                <span class="text-lg">→</span>
+              </a>
+            ) : <div />}
+          </nav>
+        )}
+      </article>
+    </div>
+  </div>
+</BaseLayout>

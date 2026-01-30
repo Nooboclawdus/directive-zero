@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" stroke="#e94560" stroke-width="2" fill="#0a0a14"/>
+  <!-- Inner ring -->
+  <circle cx="32" cy="32" r="22" stroke="#16c2d9" stroke-width="0.5" opacity="0.4"/>
+  <!-- DZ monogram -->
+  <text x="32" y="38" text-anchor="middle" font-family="monospace" font-weight="bold" font-size="20" fill="#e94560">DZ</text>
+  <!-- Crosshair lines -->
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#e94560" stroke-width="1" opacity="0.6"/>
+  <line x1="32" y1="52" x2="32" y2="60" stroke="#e94560" stroke-width="1" opacity="0.6"/>
+  <line x1="4" y1="32" x2="12" y2="32" stroke="#e94560" stroke-width="1" opacity="0.6"/>
+  <line x1="52" y1="32" x2="60" y2="32" stroke="#e94560" stroke-width="1" opacity="0.6"/>
+  <!-- Corner brackets -->
+  <path d="M10 18 L10 10 L18 10" stroke="#16c2d9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M46 10 L54 10 L54 18" stroke="#16c2d9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M54 46 L54 54 L46 54" stroke="#16c2d9" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M18 54 L10 54 L10 46" stroke="#16c2d9" stroke-width="1" fill="none" opacity="0.5"/>
+</svg>

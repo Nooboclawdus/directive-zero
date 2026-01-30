@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Recherche">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="mb-8">
+      <p class="font-[var(--font-heading)] text-[var(--color-crimson)] text-xs tracking-[0.2em] uppercase mb-2">
+        // Interface de recherche
+      </p>
+      <h1 class="font-[var(--font-heading)] text-3xl sm:text-4xl font-bold text-[var(--color-text-primary)] tracking-wide uppercase">
+        Recherche<span class="text-[var(--color-cyan)]">:</span>
+      </h1>
+      <p class="text-[var(--color-text-secondary)] mt-3 text-sm">
+        Interrogez les archives du Bureau d'Isolement Exoculturel — règles, univers, protocoles.
+      </p>
+    </div>
+
+    <!-- Pagefind UI container -->
+    <div id="search" class="pagefind-container"></div>
+  </div>
+
+  <!-- Pagefind UI assets (generated at build time in /pagefind/) -->
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      new PagefindUI({
+        element: '#search',
+        showSubResults: true,
+        showImages: false,
+        translations: {
+          placeholder: 'Rechercher dans les archives…',
+          zero_results: 'Aucun résultat pour « [SEARCH_TERM] »',
+          many_results: '[COUNT] résultats trouvés',
+          one_result: '1 résultat trouvé',
+          searching: 'Recherche en cours…',
+          clear_search: 'Effacer',
+          load_more: 'Charger plus de résultats',
+        },
+      });
+    });
+  </script>
+
+  <!-- Custom styles to match Directive Zéro theme -->
+  <style is:global>
+    /* ===== PAGEFIND THEME OVERRIDES ===== */
+    :root {
+      --pagefind-ui-scale: 1;
+      --pagefind-ui-primary: #e94560;
+      --pagefind-ui-text: #e0e0e8;
+      --pagefind-ui-background: #0f0f1e;
+      --pagefind-ui-border: #2a2a40;
+      --pagefind-ui-tag: #151528;
+      --pagefind-ui-border-width: 1px;
+      --pagefind-ui-border-radius: 4px;
+      --pagefind-ui-image-border-radius: 4px;
+      --pagefind-ui-image-box-ratio: 3 / 2;
+      --pagefind-ui-font: 'Inter', sans-serif;
+    }
+
+    /* Search input */
+    .pagefind-ui__search-input {
+      background: #0a0a14 !important;
+      border: 1px solid #2a2a40 !important;
+      color: #e0e0e8 !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1rem !important;
+      padding: 0.85rem 1rem 0.85rem 3rem !important;
+      border-radius: 6px !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .pagefind-ui__search-input:focus {
+      border-color: #e94560 !important;
+      box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.15), 0 0 20px rgba(233, 69, 96, 0.08) !important;
+      outline: none !important;
+    }
+    .pagefind-ui__search-input::placeholder {
+      color: #555570 !important;
+    }
+
+    /* Search icon color */
+    .pagefind-ui__search-icon {
+      color: #555570 !important;
+      opacity: 1 !important;
+    }
+
+    /* Clear button */
+    .pagefind-ui__search-clear {
+      background: #151528 !important;
+      color: #8888a0 !important;
+      border: 1px solid #2a2a40 !important;
+      border-radius: 4px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.8rem !important;
+      cursor: pointer !important;
+    }
+    .pagefind-ui__search-clear:hover {
+      background: #1a1a30 !important;
+      color: #e94560 !important;
+      border-color: #e94560 !important;
+    }
+
+    /* Result count / message */
+    .pagefind-ui__message {
+      font-family: 'Orbitron', monospace !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      color: #8888a0 !important;
+      padding: 1rem 0 0.5rem !important;
+    }
+
+    /* Results list */
+    .pagefind-ui__results-area {
+      margin-top: 1rem !important;
+    }
+
+    /* Individual results */
+    .pagefind-ui__result {
+      padding: 1.25rem !important;
+      border: 1px solid #2a2a40 !important;
+      border-radius: 6px !important;
+      background: #12122066 !important;
+      margin-bottom: 0.75rem !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .pagefind-ui__result:hover {
+      border-color: #3a3a55 !important;
+      box-shadow: 0 0 15px rgba(22, 194, 217, 0.05) !important;
+    }
+
+    /* Result title */
+    .pagefind-ui__result-link {
+      font-family: 'Orbitron', monospace !important;
+      font-size: 0.95rem !important;
+      font-weight: 600 !important;
+      color: #16c2d9 !important;
+      text-decoration: none !important;
+      letter-spacing: 0.02em !important;
+    }
+    .pagefind-ui__result-link:hover {
+      color: #e94560 !important;
+    }
+
+    /* Result URL/breadcrumb */
+    .pagefind-ui__result-title {
+      margin-bottom: 0.5rem !important;
+    }
+
+    /* Result excerpt */
+    .pagefind-ui__result-excerpt {
+      font-family: 'Inter', sans-serif !important;
+      color: #8888a0 !important;
+      font-size: 0.9rem !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Highlighted search terms */
+    .pagefind-ui__result-excerpt mark,
+    mark {
+      background: rgba(233, 69, 96, 0.2) !important;
+      color: #e94560 !important;
+      border-radius: 2px !important;
+      padding: 0.05em 0.2em !important;
+      font-weight: 500 !important;
+    }
+
+    /* Sub-results */
+    .pagefind-ui__result-nested {
+      padding-left: 1rem !important;
+      border-left: 2px solid #2a2a40 !important;
+      margin-top: 0.5rem !important;
+    }
+    .pagefind-ui__result-nested .pagefind-ui__result-link {
+      font-size: 0.85rem !important;
+      color: #8888a0 !important;
+    }
+    .pagefind-ui__result-nested .pagefind-ui__result-link:hover {
+      color: #16c2d9 !important;
+    }
+
+    /* Load more button */
+    .pagefind-ui__button {
+      background: #151528 !important;
+      color: #e0e0e8 !important;
+      border: 1px solid #2a2a40 !important;
+      border-radius: 6px !important;
+      font-family: 'Orbitron', monospace !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      padding: 0.75rem 1.5rem !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+      margin-top: 1rem !important;
+    }
+    .pagefind-ui__button:hover {
+      background: #1a1a30 !important;
+      border-color: #e94560 !important;
+      color: #e94560 !important;
+      box-shadow: 0 0 15px rgba(233, 69, 96, 0.1) !important;
+    }
+
+    /* Tag/filter badges */
+    .pagefind-ui__filter-panel {
+      background: #0f0f1e !important;
+      border: 1px solid #2a2a40 !important;
+      border-radius: 6px !important;
+    }
+    .pagefind-ui__filter-name {
+      font-family: 'Orbitron', monospace !important;
+      color: #16c2d9 !important;
+      text-transform: uppercase !important;
+      font-size: 0.7rem !important;
+      letter-spacing: 0.1em !important;
+    }
+
+    /* Remove default Pagefind shadows that clash with dark theme */
+    .pagefind-ui__form::before {
+      display: none !important;
+    }
+  </style>
+</BaseLayout>
