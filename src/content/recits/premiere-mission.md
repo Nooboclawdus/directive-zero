@@ -863,7 +863,7 @@ Puis il se leva, et il choisit.
 
 ## IX. Le nom qui reste
 
-La navette quitta l'atmosphère de Solvenne à l'aube du quatrième jour.
+La navette quitta l'atmosphère de Solvenne à l'aube du cinquième jour du quatrième mois.
 
 KS-27 regarda la planète rapetisser à travers la vitre polarisée. D'abord les montagnes, puis les rivières, puis les plaines, tout se fondant en un disque bleu-vert cerclé de nuages, puis en un point de lumière parmi d'autres, puis en rien.
 
