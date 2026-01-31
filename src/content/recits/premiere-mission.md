@@ -3,7 +3,7 @@ title: "Première Mission"
 order: 1
 description: "L'agent KS-27, fraîchement sorti du Noyau d'entraînement, est envoyé sur la sphère Solvenne pour une vérification de routine. Ce qu'il y trouve changera tout ce qu'il croyait savoir sur la doctrine."
 type: "nouvelle"
-readingTime: "~45 min"
+readingTime: "Environ 1 heure"
 ---
 
 
