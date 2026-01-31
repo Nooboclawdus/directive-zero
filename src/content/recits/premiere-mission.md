@@ -540,7 +540,7 @@ Le monde s'arrêta.
 
 KS-27 tourna la tête vers MG-11 avec la lenteur d'un homme qui voit le sol s'ouvrir sous ses pieds. Le visage de l'agent senior n'avait pas changé. C'était le même granit, la même dureté. Mais les mots qui sortaient de cette bouche étaient impossibles. Inconcevables. Comme si la muraille de Torven s'était mise à parler.
 
-« Non, dit KS-27. »
+« Non. »
 
 MG-11 ne le regarda pas. Il continuait de fixer Aldren, et dans ses yeux, quelque chose s'était déverrouillé, une porte que KS-27 ne soupçonnait même pas, derrière laquelle brûlait une conviction que trente-deux années de protocole avaient contenue sans jamais l'éteindre.
 
@@ -615,6 +615,7 @@ KS-27 avança d'un pas. Le sol de terre battue crissait sous ses bottes.
 « Rends-moi le module, MG-11. Je ne signalerai pas immédiatement. Je ferai un rapport mesuré. Mais je dois pouvoir communiquer. »
 
 « Non. »
+*Non.*
 
 « Alors tu me forces la main. »
 
