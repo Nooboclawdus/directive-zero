@@ -731,7 +731,7 @@ KS-27 posa la dague sur la table. Lentement. Sans quitter Vask des yeux.
 
 Le silence qui suivit dura longtemps.
 
-Vask lâcha son bâton. Le BAS cessa de pulser. Le vieil homme s'assit lourdement, comme si vingt-deux ans de résistance venaient de se retirer de ses os d'un seul coup. Puis il releva la tête et regarda KS-27 avec une expression que l'agent ne s'attendait pas à y trouver. Pas de la haine, pas du mépris. Quelque chose qui ressemblait, contre toute logique, à de la compréhension.
+Vask lâcha son bâton. Le BAS cessa de pulser. Le vieil homme s'assit lourdement, comme si vingt-deux ans de résistance venaient de se retirer de ses os d'un seul coup. Puis il releva la tête et fixa KS-27, affichant une expression que l’agent n’aurait jamais imaginé lire sur son visage. Pas de la haine, pas du mépris. Quelque chose qui ressemblait, contre toute logique, à de la compréhension.
 
 « Vous faites ce que vous croyez juste, dit Vask. Je n'ai plus l'énergie de vous en vouloir. Mais faites-le proprement, agent. C'est tout ce que je demande. Proprement. »
 
