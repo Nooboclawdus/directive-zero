@@ -44,7 +44,7 @@ Comme s'il avait senti le regard de KS-27, MG-11 ouvrit les yeux. D'un coup. San
 
 Sa voix avait la texture d'un cuir usé : souple, patinée, légèrement rauque. Mais le ton était celui d'un rapport d'évaluation, pas d'une conversation.
 
-« J'ai terminé, répondit KS-27. La syntaxe locale est acquise. Vocabulaire de base et spécialisé. Registres formels et familiers. »
+« J'ai terminé. La syntaxe locale est acquise. Vocabulaire de base et spécialisé. Registres formels et familiers. »
 
 MG-11 se redressa sur sa couchette avec la même économie mécanique, posa les pieds au sol, et le regarda. Pas avec curiosité. Avec la précision d'un calibrage.
 
