@@ -865,7 +865,7 @@ Puis il se leva, et il choisit.
 
 La navette quitta l'atmosphère de Solvenne à l'aube du cinquième jour du quatrième mois.
 
-KS-27 regarda la planète rapetisser à travers la vitre polarisée. D'abord les montagnes, puis les rivières, puis les plaines, tout se fondant en un disque bleu-vert cerclé de nuages, puis en un point de lumière parmi d'autres, puis en rien.
+KS-27 regarda la planète rapetisser à travers la vitre polarisée. D'abord les tivières, puis les plaines, puis les montagnes, tout se fondant en un disque bleu-vert cerclé de nuages, puis en un point de lumière parmi d'autres, puis en rien.
 
 Il ne regarda pas en arrière. Il n'y avait pas d'arrière, dans le Bureau. Il n'y avait que l'avant, le prochain rapport, la prochaine mission, le prochain effacement.
 
