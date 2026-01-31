@@ -70,7 +70,7 @@ MG-11 parcourait les données de descente, vérifiant les paramètres de traject
 
 ---
 
-Six heures plus tard, la navette de descente perça l'atmosphère de Solvenne dans un angle oblique, à basse vélocité thermique, les boucliers de discrétion absorbant l'essentiel de la friction. Vue de l'intérieur, à travers la vitre polarisée, la planète était un brasier silencieux : des traînées d'ocre et de pourpre qui se fondaient en un bleu profond à mesure que l'altitude chutait. Des nuages, vrais nuages d'eau, se déchiraient sur les flancs de montagnes surgies comme des crocs.
+Six heures plus tard, la navette de descente perça l'atmosphère de Solvenne dans un angle oblique, à basse vélocité thermique, les boucliers de discrétion absorbant l'essentiel de la friction. Vue de l'intérieur, à travers la vitre polarisée, la planète était un brasier silencieux : des traînées d'ocre et de pourpre qui se fondaient en un bleu profond à mesure que l'altitude chutait. Des nuages, s nuages d'eau, se déchiraient sur les flancs de montagnes surgies comme des crocs.
 
 KS-27 regardait. Il ne pouvait pas s'en empêcher.
 
@@ -851,7 +851,7 @@ Les cités blanches. L'histoire se répéterait.
 
 La deuxième option : mentir.
 
-Écrire dans son rapport que la contamination avait été contenue. Que les sources avaient été neutralisées (vrai). Que les traces technologiques avaient été éliminées (vrai, en grande partie). Que l'empreinte culturelle, bien que significative, était en voie de résorption naturelle (faux). Que Solvenne pouvait être reclassée en surveillance passive et que la prochaine vérification, dans cinquante ans, confirmerait le retour à la normale (faux, absolument faux).
+Écrire dans son rapport que la contamination avait été contenue. Que les sources avaient été neutralisées *vrai*. Que les traces technologiques avaient été éliminées *vrai, en grande partie*. Que l'empreinte culturelle, bien que significative, était en voie de résorption naturelle *faux*. Que Solvenne pouvait être reclassée en surveillance passive et que la prochaine vérification, dans cinquante ans, confirmerait le retour à la normale *faux, absolument faux*.
 
 Un mensonge. Le premier d'une vie entière au service du Bureau.
 
