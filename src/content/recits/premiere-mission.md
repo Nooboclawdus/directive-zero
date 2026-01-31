@@ -58,7 +58,7 @@ KS-27 ne répondit pas.
 
 Il se leva, se dirigea vers le panneau de contrôle. Ses gestes avaient cette économie fluide des corps entraînés, chaque mouvement calibré, rien de superflu.
 
-« Approche orbitale dans six heures, annonça-t-il en consultant les données. Solvenne, Tier 3, classée Mécanique. ISO médiéval confirmé par les derniers relevés. Dernière visite du Bureau il y a cinquante cycles standards. Rapport de l'époque : développement nominal, aucune anomalie, aucune empreinte détectée. »
+« Approche orbitale dans six heures, annonça-t-il en consultant les données. Solvenne, Tier 3, classée Mécanique. ISO médiéval confirmé par les derniers relevés. Dernière visite de routine il y a cinquante cycles standards. Rapport conforme. Une reconnaissance intermédiaire a eu lieu il y a vingt-huit cycles. Rapport également nominal. Aucune empreinte détectée à l'une ni l'autre occasion. »
 
 Il se tourna vers KS-27.
 
