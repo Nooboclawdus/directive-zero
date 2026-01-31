@@ -586,7 +586,7 @@ La nuit fut longue. Le matin, plus long encore.
 
 Il trouva la chambre de MG-11 vide à l'aube. Les affaires de l'agent senior avaient disparu. Et avec elles, le module de communication longue portée.
 
-KS-27 resta immobile un long moment, debout au milieu de la chambre d'auberge, à fixer la paillasse froide où MG-11 avait dormi. Ou n'avait pas dormi. Puis la signification de l'absence le frappa avec la précision d'un coup de dague : sans le module de communication, il ne pouvait ni signaler, ni appeler une extraction, ni transmettre son rapport. Il était coupé du Bureau, seul sur une sphère Tier 3, face à trois renégats (car MG-11 en était un désormais), sans moyen de rentrer.
+KS-27 resta immobile un long moment, debout au milieu de la chambre d'auberge, à fixer la paillasse froide où MG-11 avait dormi. Ou n'avait pas dormi. Puis la signification de l'absence le frappa avec la précision d'un coup de dague : sans le module de communication, il ne pouvait ni signaler, ni appeler une extraction, ni transmettre son rapport. Il était coupé du Bureau, seul sur une sphère Tier 3, face à trois renégats, sans moyen de rentrer.
 
 *Non*, corrigea-t-il. *Pas sans moyen. La navette est toujours là. Le pilotage automatique me ramènera au relais de secteur. Mais il faut d'abord finir la mission.*
 
