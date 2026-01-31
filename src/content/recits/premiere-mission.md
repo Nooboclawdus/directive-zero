@@ -965,6 +965,5 @@ La navette glissait vers le relais, portant dans son ventre un agent, un rapport
 
 > *Note de l'archiviste : Le rapport de mission de l'agent KS-27 concernant la sphère Solvenne a été classé conforme et archivé en strate standard. La prochaine vérification est programmée dans cinquante cycles. Le code MG-11 a été réassigné trois cycles après réception du rapport. Aucune anomalie n'a été relevée.*
 >
-> *Le carnet de l'ancien MG-11 n'a pas été retrouvé dans les effets restitués.*
 >
 > *Dossier clos.*
