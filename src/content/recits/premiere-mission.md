@@ -745,8 +745,7 @@ KS-27 hocha la tête.
 
 La dague exigeait un contact cutané prolongé et une sélection précise de la profondeur d'effacement. KS-27 cibla les couches mémorielles liées à la technologie : les connaissances conciliaires, les protocoles du Bureau, les compétences techniques avancées. Il laissa le reste intact. Les langues, les souvenirs personnels, les émotions. Ce n'étaient pas des monstres ; c'étaient des hommes qui avaient fait un choix. Un mauvais choix, selon la doctrine. Un choix humain, selon tout le reste.
 
-Aldren s'assit droit, les mains posées à plat sur la table, les yeux ouverts. Il ne cilla pas quand la dague toucha sa tempe.
-
+Aldren s'assit droit, les mains posées à plat sur la table. Son regard dériva vers la fenêtre, vers les toits de Torven, les rues pavées, les fontaines, les murs que vingt-deux ans de patience avaient élevés. Il contempla son œuvre. Puis ses yeux revinrent sur KS-27, et il ne cilla pas quand la dague toucha sa tempe.
 « Un jour, dit-il, vous comprendrez. Quand vous aurez porté Drenthe vous aussi. »
 
 Puis ses yeux se troublèrent. La mémoire se défit comme un nœud que l'on défait fil à fil. Quand ce fut terminé, Aldren cligna des yeux, regarda autour de lui avec l'expression hagarde d'un homme qui se réveille dans une chambre inconnue.
